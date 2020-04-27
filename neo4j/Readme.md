@@ -1,7 +1,7 @@
- 1.1: Retrieve all nodes from the database.
+ *** 1.1: Retrieve all nodes from the database. ***
  match (n) return n
  
- 1.2: Examine the data model for the graph.
+ *** 1.2: Examine the data model for the graph. ***
  call db.schema.visualization()
  
  1.3: Retrieve all Person nodes.
@@ -333,6 +333,8 @@
  10.3: Retrieve a movie and all of its relationships.
  MATCH (p:Person)-[rel]-(m:Movie) WHERE m.title = 'The Matrix'
  RETURN p, rel, m
+
+
 
  10.4: Try deleting a node without detaching its relationships.
  MATCH (m:Movie) WHERE m.title = 'Forrest Gump'
