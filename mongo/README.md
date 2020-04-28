@@ -1,15 +1,15 @@
 
-1.1 - Adicione outro Peixe e um Hamster com nome Frodo
+## 1.1 - Adicione outro Peixe e um Hamster com nome Frodo
 > db.pets.insert({name:"Frodo", species: "Hamster"})
 WriteResult({ "nInserted" : 1 })
 > db.pets.insert({name:"Frodo", species: "Peixe"})
 WriteResult({ "nInserted" : 1 })
 
-1.2 - Faça uma contagem dos pets na coleção
+## 1.2 - Faça uma contagem dos pets na coleção
 >db.getCollection("pets").find({}).count()
 8
 
-1.3 - Retorne apenas um elemento o método prático possível
+## 1.3 - Retorne apenas um elemento o método prático possível
 >db.getCollection("pets").findOne()
 {
 	"_id" : ObjectId("5e89e10fb16111f7184bd0a6"),
@@ -18,12 +18,12 @@ WriteResult({ "nInserted" : 1 })
 }
 
 
-1.4 - Identifique o ID para o Gato Kilha.
+## 1.4 - Identifique o ID para o Gato Kilha.
 > db.getCollection("pets").find({"name": "Kilha"},{"_id":1})
 { "_id" : ObjectId("5e89e10fb16111f7184bd0a8") }
 
 
-1.5 - Faça uma busca pelo ID e traga o Hamster Mike
+## 1.5 - Faça uma busca pelo ID e traga o Hamster Mike
 > db.getCollection("pets").find({"_id": ObjectId("5e89e10fb16111f7184bd0a6")})
 { "_id" : ObjectId("5e89e10fb16111f7184bd0a6"), "name" : "Mike", "species" : "Hamster" }
 
@@ -33,13 +33,13 @@ WriteResult({ "nInserted" : 1 })
 { "_id" : ObjectId("5e89e832b16111f7184bd0ac"), "name" : "Frodo", "species" : "Hamster" }
 
 
-1.7 - Use o find para listar todos os pets com nome Mike
+## 1.7 - Use o find para listar todos os pets com nome Mike
 > db.getCollection("pets").find({"name": "Mike"})
 { "_id" : ObjectId("5e89e10fb16111f7184bd0a6"), "name" : "Mike", "species" : "Hamster" }
 { "_id" : ObjectId("5e89e10fb16111f7184bd0a9"), "name" : "Mike", "species" : "Cachorro" }
 
 
-1.8 - Liste apenas o documento que é um Cachorro chamado Mike
+## 1.8 - Liste apenas o documento que é um Cachorro chamado Mike
 > db.getCollection("pets").findOne({"$and" : [{"name": "Mike"},{"species": "Cachorro"}]})
 {
 	"_id" : ObjectId("5e89e10fb16111f7184bd0a9"),
@@ -48,17 +48,17 @@ WriteResult({ "nInserted" : 1 })
 }
 
 
-2.1 - Liste/Conte todas as pessoas que tem exatamente 99 anos.
+## 2.1 - Liste/Conte todas as pessoas que tem exatamente 99 anos.
 > db.getCollection("italians").find({"age":99})
 > db.getCollection("italians").find({"age":99}).count()
 0
 
-2.2 - Identifique quantas pessoas são elegíveis atendimento prioritário (pessoas com mais de 65 anos)
+## 2.2 - Identifique quantas pessoas são elegíveis atendimento prioritário (pessoas com mais de 65 anos)
 > db.getCollection("italians").find({"age":{"$gte" : 65}}).count()
 1891
 
 
-2.3 - Identifique todos os jovens (pessoas entre 12 a 18 anos).
+## 2.3 - Identifique todos os jovens (pessoas entre 12 a 18 anos).
 >db.getCollection("italians").find({"age":{"$gte" : 12,"$lte" : 18 }}).count()
 859
 > db.getCollection("italians").find({"age":{"$gte" : 12,"$lte" : 18 }},{"firstname":1,"surname":1,"age":1,"_id":0}).limit(5)
@@ -69,7 +69,7 @@ WriteResult({ "nInserted" : 1 })
 { "firstname" : "Simona", "surname" : "Fiore", "age" : 14 }
 ...
 
-2.4 - Identifique quantas pessoas tem gatos, quantas tem cachorro e quantas não tem nenhum dos dois
+## 2.4 - Identifique quantas pessoas tem gatos, quantas tem cachorro e quantas não tem nenhum dos dois
 >db.getCollection("italians").find({"cat" : {"$exists" : true}}).count()
 6039
 >db.getCollection("italians").find({"dog" : {"$exists" : true}}).count()
@@ -77,7 +77,7 @@ WriteResult({ "nInserted" : 1 })
 >db.getCollection("italians").find({"$and" : [{"dog" : null},{"cat" : null}]}).count()
 2399
 
-2.5 - Liste/Conte todas as pessoas acima de 60 anos que tenham gato
+## 2.5 - Liste/Conte todas as pessoas acima de 60 anos que tenham gato
 > db.getCollection("italians").find({"$and" : [{"age":{"$gte" : 60}},{"cat" : {"$exists" : true}}]}).count()
 1506
 > db.getCollection("italians").find({"$and" : [{"age":{"$gte" : 60}},{"cat" : {"$exists" : true}}]},{"firstname":1,"surname":1,"age":1,"cat":1,"_id":0}).limit(5)
@@ -87,7 +87,7 @@ WriteResult({ "nInserted" : 1 })
 { "firstname" : "Matteo", "surname" : "De Angelis", "age" : 72, "cat" : { "name" : "Federica", "age" : 7 } }
 { "firstname" : "Maria", "surname" : "Santoro", "age" : 60, "cat" : { "name" : "Monica", "age" : 16 } }
 
-2.6 - Liste/Conte todos os jovens com cachorro
+## 2.6 - Liste/Conte todos os jovens com cachorro
 > db.getCollection("italians").find({"$and" : [{"age":{"$gte" :12, "$lte" : 18}},{"dog" : {"$exists" : true}}]}).count()
 322
 > db.getCollection("italians").find({"$and" : [{"age":{"$gte" :12, "$lte" : 18}},{"dog" : {"$exists" : true}}]},{"firstname":1,"surname":1,"age":1,"dog":1,"_id":0}).limit(5)
@@ -98,10 +98,16 @@ WriteResult({ "nInserted" : 1 })
 { "firstname" : "Claudio", "surname" : "Giordano", "age" : 15, "dog" : { "name" : "Carlo", "age" : 9 } }
 ...
 
-2.7 - Utilizando o $where, liste todas as pessoas que tem gato e cachorro
-???
+## 2.7 - Utilizando o $where, liste todas as pessoas que tem gato e cachorro
+> db.getCollection("italians").find( { $where: function() { return this.cat != null && this.dog != null } },{"firstname":1,"surname":1,"cat.name":1,"dog.name":1,"_id":0} ).limit(5);
+{ "firstname" : "Alex", "surname" : "Gentile", "cat" : { "name" : "Valentina" }, "dog" : {  } }
+{ "firstname" : "Mirko", "surname" : "Galli", "dog" : {  }, "cat" : {  } }
+{ "firstname" : "Angelo", "surname" : "Gallo", "cat" : { "name" : "Claudio" }, "dog" : {  } }
+{ "firstname" : "Paola", "surname" : "Guerra", "dog" : {  }, "cat" : {  } }
+{ "firstname" : "Rita", "surname" : "Montanari", "cat" : { "name" : "Mirko" }, "dog" : {  } }
 
-2.8 - Liste todas as pessoas mais novas que seus respectivos gatos.
+
+## 2.8 - Liste todas as pessoas mais novas que seus respectivos gatos.
 > db.italians.find( { $and: [ { cat: {$exists: true }}, { $where: "this.age < this.cat.age"}]}).count()
 641
 > db.getCollection("italians").find({ $and: [ { cat: {$exists: true }}, { $where: "this.age < this.cat.age"}]},{"firstname":1,"surname":1,"age":1,"cat":1,"_id":0}).limit(5)
@@ -113,7 +119,7 @@ WriteResult({ "nInserted" : 1 })
 ...
 
 
-2.9 - Liste as pessoas que tem o mesmo nome que seu bichano (gatou ou cachorro)
+## 2.9 - Liste as pessoas que tem o mesmo nome que seu bichano (gatou ou cachorro)
 > db.italians.find( { "$or" : [{$and: [ { cat: {$exists: true }}, { $where: "this.firstname == this.cat.name"}]}, {$and: [ { dog: {$exists: true }}, { $where: "this.firstname == this.dog.name"}]}]}).count()
 89
 > db.getCollection("italians").find({ "$or" : [{$and: [ { cat: {$exists: true }}, { $where: "this.firstname == this.cat.name"}]}, {$and: [ { dog: {$exists: true }}, { $where: "this.firstname == this.dog.name"}]}]},{"firstname":1,"surname":1,"age":1,"cat":1,"dog":1,"_id":0}).limit(5)
@@ -125,7 +131,7 @@ WriteResult({ "nInserted" : 1 })
 ...
 
 
-2.10 - Projete apenas o nome e sobrenome das pessoas com tipo de sangue de fator RH negativo
+## 2.10 - Projete apenas o nome e sobrenome das pessoas com tipo de sangue de fator RH negativo
 > db.getCollection("italians").find({"bloodType": /-/i}).count()
 4985
 > db.getCollection("italians").find({"bloodType": /-/i},{"firstname":1,"surname":1,"age":1,"bloodType":1,"_id":0}).limit(5)
@@ -136,7 +142,7 @@ WriteResult({ "nInserted" : 1 })
 { "firstname" : "Daniela", "surname" : "Marino", "age" : 47, "bloodType" : "O-" }
 ...
 
-2.11 - Projete apenas os animais dos italianos. Devem ser listados os animais com nome e idade. Não mostre o identificado do mongo (ObjectId)
+## 2.11 - Projete apenas os animais dos italianos. Devem ser listados os animais com nome e idade. Não mostre o identificado do mongo (ObjectId)
 db.getCollection("italians").find({ "$or" : [{ cat: {$exists: true }}, { dog: {$exists: true }}]},{"cat.name":1,"cat.age":1,"dog.name":1,"dog.age":1,"_id":0})
 { "cat" : { "name" : "Valentina", "age" : 4 } }
 { "cat" : { "name" : "Marco", "age" : 9 } }
@@ -161,7 +167,7 @@ db.getCollection("italians").find({ "$or" : [{ cat: {$exists: true }}, { dog: {$
 ...
 
 
-2.12 - Quais são as 5 pessoas mais velhas com sobrenome Rossi?
+## 2.12 - Quais são as 5 pessoas mais velhas com sobrenome Rossi?
 > db.getCollection("italians").find({ "surname": "Rossi" },{"firstname":1,"surname":1,"age":1}).sort({"age" :-1}).limit(5)
 { "_id" : ObjectId("5e88ccaa383ca8677b1f321f"), "firstname" : "Domenico", "surname" : "Rossi", "age" : 79 }
 { "_id" : ObjectId("5e88ccac383ca8677b1f3beb"), "firstname" : "Teresa", "surname" : "Rossi", "age" : 77 }
@@ -170,7 +176,7 @@ db.getCollection("italians").find({ "$or" : [{ cat: {$exists: true }}, { dog: {$
 { "_id" : ObjectId("5e88ccaa383ca8677b1f3180"), "firstname" : "Ilaria", "surname" : "Rossi", "age" : 75 }
 
 
-2.13 - Crie um italiano que tenha um leão como animal de estimação. Associe um nome e idade ao bichano
+## 2.13 - Crie um italiano que tenha um leão como animal de estimação. Associe um nome e idade ao bichano
 > pessoa = { 
 ...     "firstname" : "Charles", 
 ...     "surname" : "Bambineti", 
@@ -238,21 +244,21 @@ db.getCollection("italians").find({ "$or" : [{ cat: {$exists: true }}, { dog: {$
 WriteResult({ "nInserted" : 1 })
  
 
-2.14 - Infelizmente o Leão comeu o italiano. Remova essa pessoa usando o Id.
+## 2.14 - Infelizmente o Leão comeu o italiano. Remova essa pessoa usando o Id.
 > db.getCollection("italians").remove({"_id": ObjectId("5e93ae7334123205d832ae78")})
 WriteResult({ "nRemoved" : 1 })
 
 
-2.15 - Passou um ano. Atualize a idade de todos os italianos e dos bichanos em 1.
+## 2.15 - Passou um ano. Atualize a idade de todos os italianos e dos bichanos em 1.
 > db.italians.update({}, {"$inc": {"age": 1, "cat.age":1, "dog.age":1 } }, {multi: true});
 WriteResult({ "nMatched" : 10000, "nUpserted" : 0, "nModified" : 10000 })
 
 
-2.16 - O Corona Vírus chegou na Itália e misteriosamente atingiu pessoas somente com gatos e de 66 anos. Remova esses italianos
+## 2.16 - O Corona Vírus chegou na Itália e misteriosamente atingiu pessoas somente com gatos e de 66 anos. Remova esses italianos
 >db.italians.remove({"$and" : [{"age":{"$gte" : 66}},{"cat" : {"$exists" : true}}]}, {multi: true}) 
 WriteResult({ "nRemoved" : 2025 })
 
-2.17 - Utilizando o framework agregate, liste apenas as pessoas com nomes iguais a sua respectiva mãe e que tenha gato ou cachorro.
+## 2.17 - Utilizando o framework agregate, liste apenas as pessoas com nomes iguais a sua respectiva mãe e que tenha gato ou cachorro.
 >  db.italians.aggregate([
 ...      {'$match':{mother:{$exists:1}}},
 ...      {'$match':{ $or: [{cat:{$exists:1}}, {dog:{$exists:1}}]}}, 
@@ -276,7 +282,7 @@ WriteResult({ "nRemoved" : 2025 })
 { "_id" : ObjectId("5e88ccae383ca8677b1f465b"), "firstname" : "Silvia", "mother" : { "firstname" : "Silvia", "surname" : "Piras", "age" : 42 }, "cat" : { "name" : "Enzo ", "age" : 9 }, "dog" : { "name" : "Giovanni", "age" : 22 }, "isEqual" : 0 }
 
 
-2.18 -  Utilizando aggregate framework, faça uma lista de nomes única de nomes. Faça isso usando apenas o primeiro nome
+## 2.18 -  Utilizando aggregate framework, faça uma lista de nomes única de nomes. Faça isso usando apenas o primeiro nome
 > db.getCollection("italians").aggregate([  { $group : { _id : "$firstname" } } ])
 { "_id" : "Vincenzo" }
 { "_id" : "Silvia" }
@@ -300,7 +306,7 @@ WriteResult({ "nRemoved" : 2025 })
 { "_id" : "Andrea" }
 
 
-2.19 - Agora faça a mesma lista do item acima, considerando nome completo.
+## 2.19 - Agora faça a mesma lista do item acima, considerando nome completo.
 > db.getCollection("italians").aggregate([  { $group : { _id : { firstname:"$firstname", surname:"$surname"} }} ])
 { "_id" : { "firstname" : "Sabrina", "surname" : "Barone" } }
 { "_id" : { "firstname" : "Sabrina", "surname" : "Guerra" } }
@@ -324,7 +330,7 @@ WriteResult({ "nRemoved" : 2025 })
 { "_id" : { "firstname" : "Simone", "surname" : "Martino" } }
 
 
-2.20 - Procure pessoas que gosta de Banana ou Maçã, tenham cachorro ou gato, mais de 20 e menos de 60 anos.
+## 2.20 - Procure pessoas que gosta de Banana ou Maçã, tenham cachorro ou gato, mais de 20 e menos de 60 anos.
 >  db.italians.aggregate([
 ...      {'$match':{"age":{"$gte" : 20,"$lte" : 60 }}},
 ...      {'$match':{favFruits : {$all : ["Maçã", "Banana"]}}},
@@ -360,7 +366,7 @@ WriteResult({ "nRemoved" : 2025 })
 { "_id" : ObjectId("5e88cca7383ca8677b1f26cf"), "firstname" : "Alessandra", "age" : 51, "favFruits" : [ "Banana", "Maçã", "Mamão" ], "cat" : { "name" : "Sergio", "age" : 2 }, "dog" : { "age" : 5 } }
 
 
-3.1  Liste as ações com profit acima de 0.5 (limite a 10 o resultado)
+## 3.1  Liste as ações com profit acima de 0.5 (limite a 10 o resultado)
 > db.getCollection("stocks").find({"Profit Margin":{"$gte" : 0.5}},{"Ticker":1,"Company":1,"Profit Margin":1}).limit(10)
 { "_id" : ObjectId("52853800bb1177ca391c180f"), "Ticker" : "AB", "Profit Margin" : 0.896, "Company" : "AllianceBernstein Holding L.P." }
 { "_id" : ObjectId("52853801bb1177ca391c1895"), "Ticker" : "AGNC", "Profit Margin" : 0.972, "Company" : "American Capital Agency Corp." }
@@ -373,7 +379,7 @@ WriteResult({ "nRemoved" : 2025 })
 { "_id" : ObjectId("52853801bb1177ca391c1abd"), "Ticker" : "BLX", "Profit Margin" : 0.588, "Company" : "Banco Latinoamericano de Comercio Exterior, S.A" }
 { "_id" : ObjectId("52853801bb1177ca391c1af0"), "Ticker" : "BPO", "Profit Margin" : 0.503, "Company" : "Brookfield Properties Corporation" 
 
-3.2 Liste as ações com perdas (limite a 10 novamente)
+## 3.2 Liste as ações com perdas (limite a 10 novamente)
 > db.getCollection("stocks").find({"Profit Margin":{"$lte" : 0}},{"Ticker":1,"Company":1,"Profit Margin":1}).limit(10)
 { "_id" : ObjectId("52853800bb1177ca391c1806"), "Ticker" : "AAOI", "Profit Margin" : -0.023, "Company" : "Applied Optoelectronics, Inc." }
 { "_id" : ObjectId("52853800bb1177ca391c180c"), "Ticker" : "AAV", "Profit Margin" : -0.232, "Company" : "Advantage Oil & Gas Ltd." }
@@ -387,7 +393,7 @@ WriteResult({ "nRemoved" : 2025 })
 { "_id" : ObjectId("52853800bb1177ca391c1835"), "Ticker" : "ACLS", "Profit Margin" : -0.179, "Company" : "Axcelis Technologies Inc." }
 
 
-3.3 - Liste as 10 ações mais rentáveis 
+## 3.3 - Liste as 10 ações mais rentáveis 
 > db.getCollection("stocks").find({},{"Ticker":1,"Company":1,"Profit Margin":1}).sort({"Profit Margin":-1}).limit(10)
 { "_id" : ObjectId("52853801bb1177ca391c1af3"), "Ticker" : "BPT", "Profit Margin" : 0.994, "Company" : "BP Prudhoe Bay Royalty Trust" }
 { "_id" : ObjectId("52853802bb1177ca391c1b69"), "Ticker" : "CACB", "Profit Margin" : 0.994, "Company" : "Cascade Bancorp" }
@@ -401,12 +407,12 @@ WriteResult({ "nRemoved" : 2025 })
 { "_id" : ObjectId("52853809bb1177ca391c2946"), "Ticker" : "OLP", "Profit Margin" : 0.97, "Company" : "One Liberty Properties Inc." }
 
 
-3.4 - Qual foi o setor mais rentável?
+## 3.4 - Qual foi o setor mais rentável?
 > db.getCollection("stocks").aggregate([{$group: {_id : "$Industry", AVGProfit: {$avg: "$Profit Margin"}}},{$sort:{"AVGProfit":-1}},{$limit: 1}])
 { "_id" : "Diversified Investments", "AVGProfit" : 0.48268 }
 
 
-3.5 - Ordene as ações pelo profit e usando um cursor, liste as ações.
+## 3.5 - Ordene as ações pelo profit e usando um cursor, liste as ações.
 > var cursor = db.getCollection("stocks").find({},{"Ticker":1,"Company":1,"Profit Margin":1}).sort({"Profit Margin":-1}).limit(5)
 > 
 > cursor.forEach(printjson);
@@ -442,11 +448,11 @@ WriteResult({ "nRemoved" : 2025 })
 }
 
 
-3.6 - Renomeie o campo “Profit Margin” para apenas “profit”.
+## 3.6 - Renomeie o campo “Profit Margin” para apenas “profit”.
 >db.stocks.update({}, {$rename:{"Profit Margin":"profit"}}, false, true);
 WriteResult({ "nMatched" : 6756, "nUpserted" : 0, "nModified" : 4302 })
 
-3.7 - Agora liste apenas a empresa e seu respectivo resultado
+## 3.7 - Agora liste apenas a empresa e seu respectivo resultado
 > db.getCollection("stocks").find({},{"_id":0,"Company":1,"profit":1}).sort({"profit":-1}).limit(5)
 { "Company" : "BP Prudhoe Bay Royalty Trust", "profit" : 0.994 }
 { "Company" : "Cascade Bancorp", "profit" : 0.994 }
@@ -454,15 +460,20 @@ WriteResult({ "nMatched" : 6756, "nUpserted" : 0, "nModified" : 4302 })
 { "Company" : "Enduro Royalty Trust", "profit" : 0.986 }
 { "Company" : "Whiting USA Trust II", "profit" : 0.982 }
 
-3.8 - Analise as ações. É uma bola de cristal na sua mão... Quais as três ações você investiria?
-??
+## 3.8 - Analise as ações. É uma bola de cristal na sua mão... Quais as três ações você investiria?
+Não consegui entender.
 
-3.9 - Liste as ações agrupadas por setor.
+## 3.9 - Liste as ações agrupadas por setor.
+db.stocks.aggregate([{ $group: { _id: "$Sector", "tickers": { $push: "$Ticker" } } }, { $sort: { "Sector": -1 } }]).pretty()
+(saida muito grande)
 
+## 4.1 - Liste as pessoas que enviaram e-mails (de forma distinta, ou seja, sem repetir). Quantas pessoas são?
+switched to db enron
+> db.getCollection("enron").distinct("sender").length
+2200
 
-
-
-
-
+## 4.2 - Contabilize quantos e-mails tem a palavra “fraud”
+> db.getCollection("enron").find({"text": /fraud/i}).count()
+25
 
 
