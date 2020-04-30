@@ -1,11 +1,11 @@
-** 1- Crie a tabela com 2 famílias de colunas: personal-data professional-data **
+### 1- Crie a tabela com 2 famílias de colunas: personal-data professional-data **
 
 hbase(main):003:0> create 'italians','personal-data','professional-data'
 Created table italians
 Took 1.2427 seconds                                                                                                                                   
 => Hbase::Table - italians
 
-** 2- Importe o arquivo via linha de comando **
+### 2- Importe o arquivo via linha de comando **
 root@0d4f47225a2e:/# hbase shell /tmp/italians.txt 
 2020-04-18 18:52:15,855 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Took 0.4614 seconds                                                                                                                                   
@@ -55,9 +55,9 @@ For Reference, please visit: http://hbase.apache.org/2.0/book.html#shell
 Version 2.1.2, r1dfc418f77801fbfb59a125756891b9100c1fc6d, Sun Dec 30 21:45:09 PST 2018
 Took 0.0011 seconds  
 
-Agora execute as seguintes operações:
+##Agora execute as seguintes operações:
 
-1 - Adicione mais 2 italianos mantendo adicionando informações como data de  nascimento  nas  informações  pessoais  e  um  atributo  de  anos  de experiência nas informações profissionais;
+### 1 - Adicione mais 2 italianos mantendo adicionando informações como data de  nascimento  nas  informações  pessoais  e  um  atributo  de  anos  de experiência nas informações profissionais;
 hbase(main):001:0> put 'italians', '1', 'personal-data:name',  'Charles Bambineti'
 Took 0.0068 seconds                                                                                                                                   
 hbase(main):002:0> put 'italians', '1', 'personal-data:city',  'Crema'
@@ -75,14 +75,14 @@ Took 0.0028 seconds
 hbase(main):008:0> put 'italians', '2', 'professional-data:salary',  '1890'
 Took 0.0032 seconds                                                         
 
-2 - Adicione o controle de 5 versões na tabela de dados pessoais.
+### 2 - Adicione o controle de 5 versões na tabela de dados pessoais.
 hbase(main):011:0> alter 'italians', NAME=> 'personal-data', VERSIONS=>5
 Updating all regions with the new schema...
 1/1 regions updated.
 Done.
 Took 1.9330 seconds    
 
-3 - Faça 5 alterações em um dos italianos;
+### 3 - Faça 5 alterações em um dos italianos;
 hbase(main):001:0> put 'italians','1','personal-data:city','Floripa'
 Took 0.4555 seconds                                                                                                                                   
 hbase(main):002:0> put 'italians','1','personal-data:city','Biguacu'
@@ -94,7 +94,7 @@ Took 0.0043 seconds
 hbase(main):005:0> put 'italians','1','personal-data:city','Blumenau'
 Took 0.0037 seconds        
 
-4 - Com o operador get, verifique como o HBase armazenou o histórico.
+### 4 - Com o operador get, verifique como o HBase armazenou o histórico.
 hbase(main):007:0> get 'italians', '1', {COLUMN => 'personal-data:city', VERSIONS=>5}
 COLUMN                                 CELL                                                                                                           
  personal-data:city                    timestamp=1587237567073, value=Blumenau                                                                        
@@ -105,7 +105,7 @@ COLUMN                                 CELL
 1 row(s)
 Took 0.0391 seconds                                           
 
-5 - Utilize o scan para mostrar apenas o nome e profissão dos italianos.
+### 5 - Utilize o scan para mostrar apenas o nome e profissão dos italianos.
 hbase(main):011:0> scan 'italians', {COLUMNS=>['personal-data:name','professional-data:role']}
 ROW                                    COLUMN+CELL                                                                                                    
  1                                     column=personal-data:name, timestamp=1587236215698, value=Charles Bambineti                                    
@@ -131,15 +131,14 @@ ROW                                    COLUMN+CELL
 10 row(s)
 Took 0.0549 seconds    
 
-6 - Apague os italianos com row id ímpar.
 
-7 - Crie um contador de idade 55 para o italiano de row id 5
+### 7 - Crie um contador de idade 55 para o italiano de row id 5
 hbase(main):019:0> incr 'italians','5','personal-data:idade',55
 COUNTER VALUE = 55
 Took 0.0117 seconds     
    
 
-8 - Incremente a idade do italiano em 1
+### 8 - Incremente a idade do italiano em 1
 hbase(main):020:0> incr 'italians','5','personal-data:idade'
 COUNTER VALUE = 56
 Took 0.0098 seconds
